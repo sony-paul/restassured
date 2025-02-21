@@ -31,7 +31,7 @@ public class RestAssuredMethod {
     HashMap<String, String> headerobj = new HashMap<>();
 
     @org.testng.annotations.Test
-    public synchronized void test1ValidateBody() {
+    public void test1ValidateBody() {
         headerobj.put("x-api-test", "mock");
         headerobj.put("content-type", "json");
         given().log().all().
@@ -60,7 +60,7 @@ public class RestAssuredMethod {
     }
 
     @org.testng.annotations.Test
-    public synchronized void test2ExtractResponse() {
+    public void test2ExtractResponse() {
         Response res = given().baseUri("https://dummyjson.com")
                 .when()
                 .get("/products")
@@ -82,7 +82,7 @@ public class RestAssuredMethod {
 
 
     @Test
-    public synchronized void test3RequestResponseBuilder() {
+    public void test3RequestResponseBuilder() {
         RequestSpecBuilder requestspecbuilder = new RequestSpecBuilder()
                 .setBaseUri("https://videogamedb.uk:443/api/v2/videogame")
                 .setContentType(ContentType.JSON)
@@ -96,7 +96,7 @@ public class RestAssuredMethod {
     }
 
     @Test
-    public synchronized void test3validatePostRequest() {
+    public void test3validatePostRequest() {
         String payload =
                 "{\n  \"category\": \"Platform2\",\n  \"name\": \"Mario\",\n  \"rating\": \"Mature1\",\n  \"releaseDate\": \"2012-05-04\",\n  \"reviewScore\": 85\n}";
         given()
@@ -109,7 +109,7 @@ public class RestAssuredMethod {
     }
 
     @Test
-    public synchronized void test4validateDeleteRequest() {
+    public void test4validateDeleteRequest() {
         String id = "1";
         given()
                 .pathParam("id", id)
@@ -121,7 +121,7 @@ public class RestAssuredMethod {
     }
 
     @Test
-    public synchronized void test5validatePostRequest() {
+    public void test5validatePostRequest() {
         File file = new File("src/main/resources/videogame.json");
         given()
                 .body(file)
@@ -133,7 +133,7 @@ public class RestAssuredMethod {
     }
 
     @Test
-    public  synchronized void test6validatePostRequest() {
+    public  void test6validatePostRequest() {
         HashMap<String, Object> payload = new HashMap<>();
         payload.put("category", "Platform2");
         payload.put("name", "Mario");
@@ -151,7 +151,7 @@ public class RestAssuredMethod {
     }
 
     @Test
-    public synchronized void test7passcomplexjson() {
+    public void test7passcomplexjson() {
         ArrayList<String> developedCountries = new ArrayList<>();
         developedCountries.add("South Africa");
         developedCountries.add("Egypt");
@@ -181,7 +181,7 @@ public class RestAssuredMethod {
     }
 
     @Test
-    public synchronized void test8validatePostRequestObjectMapper() throws JsonProcessingException {
+    public void test8validatePostRequestObjectMapper() throws JsonProcessingException {
         HashMap<String, Object> payload1 = new HashMap<>();
         payload1.put("category", "Platform2");
         payload1.put("name", "Mario");
@@ -202,7 +202,7 @@ public class RestAssuredMethod {
     }
 
     @Test
-    public synchronized void test9SerializewithPOJO() {
+    public void test9SerializewithPOJO() {
         SimplePojo simplepojo = new SimplePojo("Sony", "2019-10-09", 70, "Platform3", "Mature3");
         given()
                 .body(simplepojo)
@@ -214,7 +214,7 @@ public class RestAssuredMethod {
     }
 
     @Test(dependsOnMethods = { "test9SerializewithPOJO" })
-    public synchronized void test9bDeSerialize() {
+    public void test9bDeSerialize() {
         {
             com.fasterxml.jackson.databind.ObjectMapper objectmapper = new ObjectMapper();
             //   objectmapper.
@@ -237,7 +237,7 @@ public class RestAssuredMethod {
     }
 
     @Test(dataProvider = "classdetails",dependsOnMethods = { "test9SerializewithPOJO" })
-    public synchronized void test9cSerializewithPOJOwithDataProvider(String name, String releaseDate, int reviewScore, String category, String rating) {
+    public void test9cSerializewithPOJOwithDataProvider(String name, String releaseDate, int reviewScore, String category, String rating) {
         SimplePojo simplepojo = new SimplePojo(name, releaseDate, reviewScore, category, rating);
         given()
                 .body(simplepojo)
@@ -258,7 +258,7 @@ public class RestAssuredMethod {
     }
 
     @Test(dependsOnMethods = { "test9SerializewithPOJO" })
-    public synchronized void test9duseBasicAuthentication() {
+    public void test9duseBasicAuthentication() {
 
         String usernamepassword = "myusr:mypwd";
         String base64Encoded = Base64.getEncoder().encodeToString(usernamepassword.getBytes());
@@ -269,7 +269,7 @@ public class RestAssuredMethod {
     }
 // change for new commit
     @Test(dependsOnMethods = { "test9SerializewithPOJO" })
-    public synchronized void test9eUseFakerApi() {
+    public void test9eUseFakerApi() {
         SimplePojo simplepojo = new SimplePojo(generateClassName(), "2019-09-09", 10,generateClassName(),generateClassName());
         given()
                 .body(simplepojo)
