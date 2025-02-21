@@ -267,7 +267,7 @@ public class RestAssuredMethod {
         System.out.println(new String(decodedBytes));
 
     }
-
+// change for new commit
     @Test(dependsOnMethods = { "test9SerializewithPOJO" })
     public synchronized void test9eUseFakerApi() {
         SimplePojo simplepojo = new SimplePojo(generateClassName(), "2019-09-09", 10,generateClassName(),generateClassName());
